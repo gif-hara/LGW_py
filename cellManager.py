@@ -79,4 +79,8 @@ class CellManager:
             self.next_generation()
         if keyCode == 'q':
             self.remove_all_cell()
+        if keyCode == 'w':
+            for y in range(100):
+                for x in range(50):
+                    self.create_cell(Point(x, y))
             
