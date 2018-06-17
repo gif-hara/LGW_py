@@ -23,9 +23,12 @@ class Point:
     def __truediv__(self, other):
         return Point(math.floor(self.x / other), math.floor(self.y / other))
 
+    def __eq__(self, other):
+        return self.x == other.x and self.y == other.y
+    
+    def __en__(self, other):
+        return not self == other
+    
     def set(self, x, y):
         self.x = x
         self.y = y
-    
-    def __hash__(self):
-        return self.x + self.y * 100000

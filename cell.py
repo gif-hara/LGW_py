@@ -16,3 +16,22 @@ class Cell:
         
     def remove(self):
         self.canvas.delete(self.image)
+    
+    def next_generation(self, cellManager):
+        min = Point(self.id.x - 1, self.id.y - 1)
+        for y in range(3):
+            for x in range(3):
+                targetId = Point(min.x + x, min.y + y)
+                if targetId in cellManager.processed_cellIds:
+                    continue
+                adjacentNumber = cellManager.get_adjacent_number(targetId)
+                isAlive = targetId in cellManager.cellIds
+                if isAlive:
+                    adjacentNumber -= 1
+                    if adjacentNumber <= 1 or adjacentNumber >= 4:
+                        cellManager.remove_request_ids.append(targetId)
+                else:
+                    if adjacentNumber == 3:
+                        cellManager.create_request_ids.append(targetId)
+                cellManager.processed_cellIds.append(targetId)
+
