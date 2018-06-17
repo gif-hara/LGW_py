@@ -4,4 +4,4 @@
 class UserSettings:
     @staticmethod
     def cell_size():
-        return 20
+        return 10
