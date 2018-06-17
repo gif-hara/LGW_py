@@ -12,7 +12,7 @@ profiler = LineProfiler()
 def main():
     root = tk.Tk()
     root.title("LGW")
-    # root.attributes("-fullscreen", True)
+    root.attributes("-fullscreen", True)
 
     # def input_key(event):
     #     print("input = {}".format(repr(event.char)))
