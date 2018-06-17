@@ -4,6 +4,7 @@
 import tkinter as tk
 from cell import Cell
 from point import Point
+from cellManager import *
 
 root = tk.Tk()
 root.title("LGW")
@@ -17,8 +18,6 @@ canvas.pack(fill = tk.BOTH, expand = 1)
 canvas.bind("<Key>", input_key)
 canvas.focus_set()
 
-Cell(canvas, Point(0, 0))
-Cell(canvas, Point(1, 1))
-Cell(canvas, Point(2, 2))
+cellManager = CellManager(canvas)
 
 root.mainloop()
