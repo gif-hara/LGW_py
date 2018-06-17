@@ -27,7 +27,6 @@ class Cell:
                 adjacentNumber = cellManager.get_adjacent_number(targetId)
                 isAlive = targetId in cellManager.cellIds
                 if isAlive:
-                    adjacentNumber -= 1
                     if adjacentNumber <= 1 or adjacentNumber >= 4:
                         cellManager.remove_request_ids.append(targetId)
                 else:

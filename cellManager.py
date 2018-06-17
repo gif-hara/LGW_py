@@ -20,12 +20,19 @@ class CellManager:
     def create_cell(self, id):
         cell = Cell(self.canvas, id)
         self.cells.append(cell)
-        self.cellIds[id] = True
+        self.cellIds[id] = cell
     
     def remove_cell(self, id):
-        index = self.cellIds[id]
-        self.cells.pop(index).remove()
+        cell = self.cellIds[id]
+        cell.remove()
+        self.cells.remove(cell)
         del self.cellIds[id]
+    
+    def remove_all_cell(self):
+        for c in self.cells:
+            c.remove()
+        self.cells.clear()
+        self.cellIds.clear()
 
     def contains_cell(self, id):
         return id in self.cellIds
@@ -46,7 +53,10 @@ class CellManager:
         min = Point(id.x - 1, id.y - 1)
         for y in range(3):
             for x in range(3):
-                if Point(min.x + x, min.y + y) in self.cellIds:
+                targetId = Point(min.x + x, min.y + y)
+                if targetId == id:
+                    continue
+                if targetId in self.cellIds:
                     result += 1
         return result
 
@@ -54,9 +64,7 @@ class CellManager:
     def clicked_left_mouse_button(self, event):
         size = UserSettings.cell_size()
         id = Point(event.x, event.y) / size
-        if self.contains_cell(id):
-            self.remove_cell(id)
-        else:
+        if not self.contains_cell(id):
             self.create_cell(id)
 
     def drag_left_mouse_button(self, event):
@@ -69,3 +77,6 @@ class CellManager:
         keyCode = event.char
         if keyCode == ' ':
             self.next_generation()
+        if keyCode == 'q':
+            self.remove_all_cell()
+            

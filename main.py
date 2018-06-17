@@ -12,7 +12,7 @@ profiler = LineProfiler()
 def main():
     root = tk.Tk()
     root.title("LGW")
-    root.attributes("-fullscreen", True)
+    # root.attributes("-fullscreen", True)
 
     # def input_key(event):
     #     print("input = {}".format(repr(event.char)))
@@ -24,21 +24,21 @@ def main():
 
     cellManager = CellManager(canvas)
     
-    for y in range(20):
-        for x in range(20):
-            cellManager.create_cell(Point(x, y))
-    cellManager.next_generation()
+    # for y in range(20):
+    #     for x in range(20):
+    #         cellManager.create_cell(Point(x, y))
+    # cellManager.next_generation()
 
-    # root.mainloop()
-    root.quit()
+    root.mainloop()
+    # root.quit()
 
-profiler.add_module(Cell)
-profiler.add_module(Point)
-profiler.add_module(CellManager)
-profiler.add_function(main)
+# profiler.add_module(Cell)
+# profiler.add_module(Point)
+# profiler.add_module(CellManager)
+# profiler.add_function(main)
 
-profiler.runcall(main)
+# profiler.runcall(main)
 
-profiler.print_stats()
+# profiler.print_stats()
 
-#main()
+main()
