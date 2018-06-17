@@ -2,17 +2,15 @@ import tkinter as tk
 from cell import Cell
 from point import Point
 
-c = Cell(Point(13, 65))
-
 root = tk.Tk()
 root.title("LGW")
-root.geometry("400x200")
+#root.attributes("-fullscreen", True)
 
-canvas = tk.Canvas(root, width=300, height=200)
-canvas.create_rectangle(10, 10, 30, 60, fill="yellow")
-canvas.place(x=0, y=0)
+canvas = tk.Canvas(root, bg = "#000000")
+canvas.pack(fill = tk.BOTH, expand = 1)
 
-label = tk.Label(root, text = "Hello world")
-label.grid()
+Cell(canvas, Point(0, 0))
+Cell(canvas, Point(1, 1))
+Cell(canvas, Point(2, 2))
 
 root.mainloop()

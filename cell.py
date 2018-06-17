@@ -1,6 +1,11 @@
 from point import Point
 
 class Cell:
-    def __init__(self, id):
+    def __init__(self, canvas, id):
+        self.canvas = canvas
         self.id = id
-        print("cell")
+
+        size = 20
+        position = self.id * size
+        
+        self.image = self.canvas.create_rectangle(position.x, position.y, position.x + size, position.y + size, fill = "blue")
