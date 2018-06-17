@@ -12,7 +12,7 @@ class CellManager:
         self.cellIds = {}
         self.create_request_ids = []
         self.remove_request_ids = []
-        self.processed_cellIds = []
+        self.processed_cellIds = {}
         self.canvas.bind("<Button-1>", self.clicked_left_mouse_button)
         self.canvas.bind("<B1-Motion>", self.drag_left_mouse_button)
         self.canvas.bind("<Key>", self.any_key_down)

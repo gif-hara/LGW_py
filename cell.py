@@ -33,5 +33,5 @@ class Cell:
                 else:
                     if adjacentNumber == 3:
                         cellManager.create_request_ids.append(targetId)
-                cellManager.processed_cellIds.append(targetId)
+                cellManager.processed_cellIds[targetId] = True
 
