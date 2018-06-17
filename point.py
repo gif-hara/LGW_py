@@ -28,6 +28,9 @@ class Point:
     
     def __en__(self, other):
         return not self == other
+
+    def __hash__(self):
+        return self.x + self.y * 10000
     
     def set(self, x, y):
         self.x = x

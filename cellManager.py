@@ -9,7 +9,7 @@ class CellManager:
     def __init__(self, canvas):
         self.canvas = canvas
         self.cells = []
-        self.cellIds = []
+        self.cellIds = {}
         self.create_request_ids = []
         self.remove_request_ids = []
         self.processed_cellIds = []
@@ -20,12 +20,12 @@ class CellManager:
     def create_cell(self, id):
         cell = Cell(self.canvas, id)
         self.cells.append(cell)
-        self.cellIds.append(id)
+        self.cellIds[id] = True
     
     def remove_cell(self, id):
-        index = self.cellIds.index(id)
+        index = self.cellIds[id]
         self.cells.pop(index).remove()
-        del self.cellIds[index]
+        del self.cellIds[id]
 
     def contains_cell(self, id):
         return id in self.cellIds
