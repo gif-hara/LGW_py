@@ -21,6 +21,9 @@ class ApplicationTkinter(Application):
         self.canvas.pack(fill = tk.BOTH, expand = 1)
         self.canvas.focus_set()
 
+        # width, heightが正しく取得出来ないので強制更新する
+        self.window.update_idletasks()
+
         size = UserSettings.cell_size()
         width = math.floor(self.window.winfo_width() / size)
         height = math.floor(self.window.winfo_height() / size)
