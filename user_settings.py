@@ -21,4 +21,8 @@ class UserSettings:
     @staticmethod
     def foreground_cell_color():
         return "springgreen"
+
+    @staticmethod
+    def offset_x_watch():
+        return -3
         
