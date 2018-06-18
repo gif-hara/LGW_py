@@ -42,5 +42,9 @@ class ApplicationTkinter(Application):
     def run(self):
         self.window.mainloop()
 
-    def schedule(self, delay, function):
-        self.window.after(delay, function)
+    def register_schedule(self, delaySeconds, function):
+        return self.window.after(math.floor(delaySeconds * 1000), function)
+
+    def cancel_schedule(self, id):
+        self.window.after_cancel(id)
+

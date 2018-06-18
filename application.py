@@ -11,8 +11,8 @@ class Application(metaclass=ABCMeta):
         pass
     
     def __new__(cls):
-        if cls._instance is None:
-            cls._instance = super().__new__(cls)
+        if Application._instance is None:
+            Application._instance = super().__new__(cls)
         return cls._instance
 
     @abstractmethod
@@ -24,5 +24,9 @@ class Application(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def schedule(self, delay, function):
+    def register_schedule(self, delaySeconds, function):
+        pass
+
+    @abstractmethod
+    def cancel_schedule(self, id):
         pass

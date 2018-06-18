@@ -6,6 +6,7 @@ from repeated_timer import *
 from user_settings import *
 import math
 from preset_cell import *
+from application import *
 
 class UserInput:
     def __init__(self, cellManager, canvas):
@@ -14,7 +15,12 @@ class UserInput:
         self.canvas.bind("<Button-1>", self.clicked_left_mouse_button)
         self.canvas.bind("<B1-Motion>", self.drag_left_mouse_button)
         self.canvas.bind("<Key>", self.any_key_down)
-        self.repeat_next_generation = None
+        self.next_generation_schedule = None
+
+    def next_generation(self):
+        self.cellManager.next_generation()
+        self.next_generation_schedule = Application().register_schedule(UserSettings.interval(), self.next_generation)
+        print(self.next_generation_schedule)
 
     def clicked_left_mouse_button(self, event):
         size = UserSettings.cell_size()
@@ -40,13 +46,11 @@ class UserInput:
             for y in range(self.cellManager.height):
                 for x in range(self.cellManager.width):
                     self.cellManager.set_alive(x, y, True)
-        if keyCode == 'z' and self.repeat_next_generation is None:
-            self.repeat_next_generation = RepeatedTimer(UserSettings.interval(), self.cellManager.next_generation)
-            self.repeat_next_generation.start()
-        if keyCode == 'x' and self.repeat_next_generation is not None:
-            self.repeat_next_generation.cancel()
-            del self.repeat_next_generation
-            self.repeat_next_generation = None
+        if keyCode == 'z' and self.next_generation_schedule is None:
+            self.next_generation()
+        if keyCode == 'x' and self.next_generation_schedule is not None:
+            Application().cancel_schedule(self.next_generation_schedule)
+            self.next_generation_schedule = None
         if keyCode == 'c':
             PresetCell.apply_from_string(self.cellManager, '0123456789/:', 0, 0, 1)
 
