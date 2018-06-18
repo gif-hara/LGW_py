@@ -13,9 +13,6 @@ class CellManager:
         self.create_request_ids = []
         self.remove_request_ids = []
         self.processed_cellIds = {}
-        self.canvas.bind("<Button-1>", self.clicked_left_mouse_button)
-        self.canvas.bind("<B1-Motion>", self.drag_left_mouse_button)
-        self.canvas.bind("<Key>", self.any_key_down)
 
     def create_cell(self, id):
         cell = Cell(self.canvas, id)
@@ -59,28 +56,3 @@ class CellManager:
                 if targetId in self.cellIds:
                     result += 1
         return result
-
-
-    def clicked_left_mouse_button(self, event):
-        size = UserSettings.cell_size()
-        id = Point(event.x, event.y) / size
-        if not self.contains_cell(id):
-            self.create_cell(id)
-
-    def drag_left_mouse_button(self, event):
-        size = UserSettings.cell_size()
-        id = Point(event.x, event.y) / size
-        if not self.contains_cell(id):
-            self.create_cell(id)
-    
-    def any_key_down(self, event):
-        keyCode = event.char
-        if keyCode == ' ':
-            self.next_generation()
-        if keyCode == 'q':
-            self.remove_all_cell()
-        if keyCode == 'w':
-            for y in range(100):
-                for x in range(50):
-                    self.create_cell(Point(x, y))
-            

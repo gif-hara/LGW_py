@@ -6,6 +6,7 @@ from cell import Cell
 from point import Point
 from cell_manager import *
 from line_profiler import LineProfiler
+from user_input import *
 
 profiler = LineProfiler()
 
@@ -23,6 +24,7 @@ def main():
     canvas.focus_set()
 
     cellManager = CellManager(canvas)
+    userInput = UserInput(cellManager, canvas)
     
     # for y in range(20):
     #     for x in range(20):

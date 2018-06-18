@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import signal
-import time
+from threading import Timer
 
 class RepeatedTimer(Timer):
     def __init__(self, interval, function, args=[], kwargs={}):
@@ -16,7 +15,7 @@ class RepeatedTimer(Timer):
         self.funcion(*self.args, *self.kwargs)
 
     def cancel(self):
-        if self.thread not None:
+        if self.thread is not None:
             self.thread.cancel()
             self.thread.join()
             del self.thread
