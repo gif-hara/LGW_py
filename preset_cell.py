@@ -111,6 +111,13 @@ class PresetCell:
         (0,1,0),
         (0,0,0),
     )
+    _space = (
+        (0,0,0),
+        (0,0,0),
+        (0,0,0),
+        (0,0,0),
+        (0,0,0),
+    )
 
     _dictionary = {
         '0':_num0,
@@ -125,4 +132,5 @@ class PresetCell:
         '9':_num9,
         '/':_slash,
         ':':_colon,
+        ' ':_space,
     }
