@@ -15,7 +15,7 @@ class CellManager:
         self.processed_cellIds = {}
 
     def create_cell(self, id):
-        cell = Cell(self.canvas, id)
+        cell = Cell(self.canvas, id, True)
         self.cells.append(cell)
         self.cellIds[id] = cell
     
