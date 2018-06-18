@@ -8,6 +8,7 @@ class RepeatedTimer(Timer):
         Timer.__init__(self, interval, function, args, kwargs)
         self.thread = None
         self.funcion = function
+        self.daemon = True
 
     def run(self):
         self.thread = Timer(self.interval, self.run)
