@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from application import Application
+from application_tkinter import ApplicationTkinter
 
-app = Application()
+app = ApplicationTkinter()
 
 app.initialize()
 app.run()

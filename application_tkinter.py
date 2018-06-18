@@ -8,7 +8,7 @@ from line_profiler import LineProfiler
 from user_input import *
 import math
 
-class Application:
+class ApplicationTkinter:
 
     _instance = None
 
