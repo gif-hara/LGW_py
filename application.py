@@ -12,8 +12,6 @@ class Application:
 
     _instance = None
 
-    window = None
-
     def __init__(self):
         pass
 
@@ -23,16 +21,16 @@ class Application:
         return cls._instance
 
     def initialize(self):
-        self._instance.window = tk.Tk()
-        self._instance.window.title("LGW")
-        self._instance.window.attributes("-fullscreen", True)
+        self.window = tk.Tk()
+        self.window.title("LGW")
+        self.window.attributes("-fullscreen", True)
 
-        canvas = tk.Canvas(self._instance.window, bg = "#000000")
-        canvas.pack(fill = tk.BOTH, expand = 1)
-        canvas.focus_set()
+        self.canvas = tk.Canvas(self._instance.window, bg = "#000000")
+        self.canvas.pack(fill = tk.BOTH, expand = 1)
+        self.canvas.focus_set()
 
-        cellManager = CellManager(canvas, 100, 100)
-        userInput = UserInput(cellManager, canvas)
+        self.cellManager = CellManager(self.canvas, 100, 100)
+        self.userInput = UserInput(self.cellManager, self.canvas)
 
     def run(self):
-        self._instance.window.mainloop()
+        self.window.mainloop()
