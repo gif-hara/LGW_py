@@ -22,3 +22,7 @@ class Application(metaclass=ABCMeta):
     @abstractmethod
     def run(self):
         pass
+
+    @abstractmethod
+    def schedule(self, delay, function):
+        pass

@@ -38,3 +38,6 @@ class ApplicationTkinter(Application):
 
     def run(self):
         self.window.mainloop()
+
+    def schedule(self, delay, function):
+        self.window.after(delay, function)
