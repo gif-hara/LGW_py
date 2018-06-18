@@ -35,6 +35,10 @@ class UserInput:
             self.cellManager.next_generation()
         if keyCode == 'q':
             self.cellManager.remove_all_cell()
+        if keyCode == 'w':
+            for y in range(self.cellManager.height):
+                for x in range(self.cellManager.width):
+                    self.cellManager.set_alive(x, y, True)
         if keyCode == 'z' and self.repeat_next_generation is None:
             self.repeat_next_generation = RepeatedTimer(UserSettings.interval(), self.cellManager.next_generation)
             self.repeat_next_generation.start()
