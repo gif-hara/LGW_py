@@ -9,3 +9,16 @@ class UserSettings:
     @staticmethod
     def interval():
         return 0.2
+
+    @staticmethod
+    def background_color():
+        return "black"
+
+    @staticmethod
+    def background_cell_color():
+        return "blue"
+
+    @staticmethod
+    def foreground_cell_color():
+        return "springgreen"
+        

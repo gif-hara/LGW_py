@@ -17,7 +17,7 @@ class ApplicationTkinter(Application):
         self.window.title("LGW")
         self.window.attributes("-fullscreen", True)
 
-        self.canvas = tk.Canvas(self._instance.window, bg = "#000000")
+        self.canvas = tk.Canvas(self._instance.window, bg = UserSettings.background_color())
         self.canvas.pack(fill = tk.BOTH, expand = 1)
         self.canvas.focus_set()
 
@@ -28,10 +28,10 @@ class ApplicationTkinter(Application):
         width = math.floor(self.window.winfo_width() / size)
         height = math.floor(self.window.winfo_height() / size)
 
-        self.backgroundCellManager = CellManager(self.canvas, width, height, "blue")
+        self.backgroundCellManager = CellManager(self.canvas, width, height, UserSettings.background_cell_color())
         backgroundWatch = Watch(self.backgroundCellManager)
 
-        self.foregroundCellManager = CellManager(self.canvas, width, height, "green")
+        self.foregroundCellManager = CellManager(self.canvas, width, height, UserSettings.foreground_cell_color())
         foregroundWatch = Watch(self.foregroundCellManager)
 
         backgroundWatch.start()
