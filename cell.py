@@ -36,10 +36,14 @@ class Cell:
                 targetX = minX + x
                 targetY = minY + y
                 if targetX >= 0 and targetX < cellManager.width and targetY >= 0 and targetY < cellManager.height:
-                    adjacentNumber = cellManager.get_adjacent_number(targetX, targetY)
                     cell = cellManager.cells[targetX + targetY * cellManager.width]
-                    if cell.isAlive == True and adjacentNumber <= 1 or adjacentNumber >= 4:
-                        cellManager.remove_requests.append(cell)
+                    if cell in cellManager.processed_cellIds:
+                        continue
+                    cellManager.processed_cellIds[cell] = cell
+                    adjacentNumber = cellManager.get_adjacent_number(targetX, targetY)
+                    if cell.isAlive == True:
+                        if adjacentNumber <= 1 or adjacentNumber >= 4:
+                            cellManager.remove_requests.append(cell)
                     elif cell.isAlive == False and adjacentNumber == 3:
                         cellManager.create_requests.append(cell)
         

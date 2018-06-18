@@ -33,6 +33,7 @@ class CellManager:
     def next_generation(self):
         self.create_requests.clear()
         self.remove_requests.clear()
+        self.processed_cellIds.clear()
         for c in self.cells:
             c.next_generation(self)
         for c in self.create_requests:
