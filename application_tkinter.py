@@ -7,18 +7,9 @@ from cell_manager import *
 from line_profiler import LineProfiler
 from user_input import *
 import math
+from application import Application
 
-class ApplicationTkinter:
-
-    _instance = None
-
-    def __init__(self):
-        pass
-
-    def __new__(cls):
-        if cls._instance is None:
-            cls._instance = super().__new__(cls)
-        return cls._instance
+class ApplicationTkinter(Application):
 
     def initialize(self):
         self.window = tk.Tk()
