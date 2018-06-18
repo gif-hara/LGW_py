@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from point import Point
 from user_settings import *
 
 class Cell:

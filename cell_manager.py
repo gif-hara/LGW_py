@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 from cell import *
-from point import *
 
 class CellManager:
 
