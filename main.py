@@ -4,7 +4,7 @@
 import tkinter as tk
 from cell import Cell
 from point import Point
-from cellManager import *
+from cell_manager import *
 from line_profiler import LineProfiler
 
 profiler = LineProfiler()

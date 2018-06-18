@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from point import Point
-from userSettings import *
+from user_settings import *
 
 class Cell:
     def __init__(self, canvas, id):
