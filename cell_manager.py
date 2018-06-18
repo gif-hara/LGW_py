@@ -34,13 +34,7 @@ class CellManager:
         self.create_requests.clear()
         self.remove_requests.clear()
         for c in self.cells:
-            adjacentNumber = self.get_adjacent_number(c.x, c.y)
-            if c.isAlive:
-                if adjacentNumber <= 1 or adjacentNumber >= 4:
-                    self.remove_requests.append(c)
-            else:
-                if adjacentNumber == 3:
-                    self.create_requests.append(c)
+            c.next_generation(self)
         for c in self.create_requests:
             c.set_alive(True)
         for c in self.remove_requests:
