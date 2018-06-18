@@ -27,6 +27,14 @@ class PresetCell:
             posY += 1
             posX = offsetX
 
+    @staticmethod
+    def char_x():
+        return 3
+    
+    @staticmethod
+    def char_y():
+        return 5
+
     _num0 = (
         (1,1,1),
         (1,0,1),

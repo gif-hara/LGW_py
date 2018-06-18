@@ -29,10 +29,10 @@ class ApplicationTkinter(Application):
         height = math.floor(self.window.winfo_height() / size)
 
         self.backgroundCellManager = CellManager(self.canvas, width, height, "blue")
-        backgroundWatch = Watch(self.backgroundCellManager, 0, 0)
+        backgroundWatch = Watch(self.backgroundCellManager)
 
         self.foregroundCellManager = CellManager(self.canvas, width, height, "green")
-        foregroundWatch = Watch(self.foregroundCellManager, 0, 0)
+        foregroundWatch = Watch(self.foregroundCellManager)
 
         backgroundWatch.start()
         foregroundWatch.start()
