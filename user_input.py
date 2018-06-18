@@ -5,6 +5,7 @@ from cell_manager import *
 from repeated_timer import *
 from user_settings import *
 import math
+from preset_cell import *
 
 class UserInput:
     def __init__(self, cellManager, canvas):
@@ -46,6 +47,8 @@ class UserInput:
             self.repeat_next_generation.cancel()
             del self.repeat_next_generation
             self.repeat_next_generation = None
+        if keyCode == 'c':
+            PresetCell.apply_from_string(self.cellManager, '0123456789/:', 0, 0, 1)
 
 
 
