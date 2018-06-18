@@ -29,13 +29,10 @@ class ApplicationTkinter(Application):
         height = math.floor(self.window.winfo_height() / size)
 
         self.backgroundCellManager = CellManager(self.canvas, width, height, UserSettings.background_cell_color())
-        backgroundWatch = Watch(self.backgroundCellManager)
-
         self.foregroundCellManager = CellManager(self.canvas, width, height, UserSettings.foreground_cell_color())
-        foregroundWatch = Watch(self.foregroundCellManager)
 
-        backgroundWatch.start()
-        foregroundWatch.start()
+        watch = Watch((self.backgroundCellManager, self.foregroundCellManager))
+        watch.start()
 
         self.userInput = UserInput(self.backgroundCellManager, self.canvas)
 
