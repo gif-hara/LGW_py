@@ -8,6 +8,7 @@ from line_profiler import LineProfiler
 from user_input import *
 import math
 from application import Application
+from watch import *
 
 class ApplicationTkinter(Application):
 
@@ -20,11 +21,20 @@ class ApplicationTkinter(Application):
         self.canvas.pack(fill = tk.BOTH, expand = 1)
         self.canvas.focus_set()
 
-        width = self.window.winfo_width()
-        height = self.window.winfo_height()
         size = UserSettings.cell_size()
-        self.cellManager = CellManager(self.canvas, math.floor(width / size), math.floor(height / size), "blue")
-        self.userInput = UserInput(self.cellManager, self.canvas)
+        width = math.floor(self.window.winfo_width() / size)
+        height = math.floor(self.window.winfo_height() / size)
+
+        self.backgroundCellManager = CellManager(self.canvas, width, height, "blue")
+        backgroundWatch = Watch(self.backgroundCellManager, 0, 0)
+
+        self.foregroundCellManager = CellManager(self.canvas, width, height, "green")
+        foregroundWatch = Watch(self.foregroundCellManager, 0, 0)
+
+        backgroundWatch.start()
+        foregroundWatch.start()
+
+        self.userInput = UserInput(self.backgroundCellManager, self.canvas)
 
     def run(self):
         self.window.mainloop()
