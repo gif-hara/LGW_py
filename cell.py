@@ -5,25 +5,27 @@ from point import Point
 from user_settings import *
 
 class Cell:
-    def __init__(self, canvas, id, isAlive):
+    def __init__(self, canvas, x, y, size, isAlive):
         self.canvas = canvas
-        self.id = id
+        self.x = x
+        self.y = y
         self.isAlive = isAlive
 
-        size = UserSettings.cell_size()
-        position = self.id * size
+        posX = x * size
+        posY = y * size
         
         self.image = self.canvas.create_rectangle(
-            position.x,
-            position.y,
-            position.x + size,
-            position.y + size,
+            posX,
+            posY,
+            posX + size,
+            posY + size,
             fill="blue",
             state=self.get_state(self.isAlive)
             )
         
     def set_alive(self, isAlive):
-        self.canvas.itemconfig(self.image, state="hidden")
+        self.isAlive = isAlive
+        self.canvas.itemconfig(self.image, state=self.get_state(self.isAlive))
     
     def next_generation(self, cellManager):
         min = Point(self.id.x - 1, self.id.y - 1)
@@ -47,6 +49,6 @@ class Cell:
         if isAlive == True:
             return "normal"
         else:
-            return "hiden"
+            return "hidden"
 
 

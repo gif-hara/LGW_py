@@ -6,53 +6,58 @@ from point import *
 
 class CellManager:
 
-    def __init__(self, canvas):
+    def __init__(self, canvas, width, height):
+        from application import Application
+        window = Application().window
         self.canvas = canvas
-        self.cells = []
-        self.cellIds = {}
-        self.create_request_ids = []
-        self.remove_request_ids = []
+        cells = []
+        for y in range(height):
+            for x in range(width):
+                cells.append(Cell(canvas, x, y, UserSettings.cell_size(), False))
+        self.cells = tuple(cells)
+        self.create_requests = []
+        self.remove_requests = []
         self.processed_cellIds = {}
-
-    def create_cell(self, id):
-        cell = Cell(self.canvas, id, True)
-        self.cells.append(cell)
-        self.cellIds[id] = cell
-    
-    def remove_cell(self, id):
-        cell = self.cellIds[id]
-        cell.remove()
-        self.cells.remove(cell)
-        del self.cellIds[id]
+        self.width = width
+        self.height = height
     
     def remove_all_cell(self):
         for c in self.cells:
-            c.remove()
-        self.cells.clear()
-        self.cellIds.clear()
+            c.set_alive(False)
+    
+    def set_alive(self, x, y, isAlive):
+        self.cells[x + y * self.width].set_alive(isAlive)
 
-    def contains_cell(self, id):
-        return id in self.cellIds
+    def get_alive(self, x, y):
+        return self.cells[x + y * self.width].isAlive
 
     def next_generation(self):
-        self.create_request_ids.clear()
-        self.remove_request_ids.clear()
-        self.processed_cellIds.clear()
+        self.create_requests.clear()
+        self.remove_requests.clear()
         for c in self.cells:
-            c.next_generation(self)
-        for id in self.create_request_ids:
-            self.create_cell(id)
-        for id in self.remove_request_ids:
-            self.remove_cell(id)
+            adjacentNumber = self.get_adjacent_number(c.x, c.y)
+            if c.isAlive:
+                if adjacentNumber <= 1 or adjacentNumber >= 4:
+                    self.remove_requests.append(c)
+            else:
+                if adjacentNumber == 3:
+                    self.create_requests.append(c)
+        for c in self.create_requests:
+            c.set_alive(True)
+        for c in self.remove_requests:
+            c.set_alive(False)
 
-    def get_adjacent_number(self, id):
+    def get_adjacent_number(self, posX, posY):
         result = 0
-        min = Point(id.x - 1, id.y - 1)
+        minX = posX - 1
+        minY = posY - 1
         for y in range(3):
             for x in range(3):
-                targetId = Point(min.x + x, min.y + y)
-                if targetId == id:
+                targetX = minX + x
+                targetY = minY + y
+                if posX == targetX and posY == targetY:
                     continue
-                if targetId in self.cellIds:
-                    result += 1
+                if targetX >= 0 and targetX < self.width and targetY >= 0 and targetY < self.height:
+                    if self.cells[targetX + targetY * self.width].isAlive == True:
+                        result += 1
         return result

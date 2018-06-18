@@ -4,6 +4,7 @@
 from cell_manager import *
 from repeated_timer import *
 from user_settings import *
+import math
 
 class UserInput:
     def __init__(self, cellManager, canvas):
@@ -16,15 +17,17 @@ class UserInput:
 
     def clicked_left_mouse_button(self, event):
         size = UserSettings.cell_size()
-        id = Point(event.x, event.y) / size
-        if not self.cellManager.contains_cell(id):
-            self.cellManager.create_cell(id)
+        x = math.floor(event.x / size)
+        y = math.floor(event.y / size)
+        if self.cellManager.get_alive(x, y) == False:
+            self.cellManager.set_alive(x, y, True)
 
     def drag_left_mouse_button(self, event):
         size = UserSettings.cell_size()
-        id = Point(event.x, event.y) / size
-        if not self.cellManager.contains_cell(id):
-            self.cellManager.create_cell(id)
+        x = math.floor(event.x / size)
+        y = math.floor(event.y / size)
+        if self.cellManager.get_alive(x, y) == False:
+            self.cellManager.set_alive(x, y, True)
     
     def any_key_down(self, event):
         keyCode = event.char

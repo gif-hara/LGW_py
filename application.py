@@ -11,7 +11,7 @@ from user_input import *
 class Application:
 
     _instance = None
-    
+
     window = None
 
     def __init__(self):
@@ -31,7 +31,7 @@ class Application:
         canvas.pack(fill = tk.BOTH, expand = 1)
         canvas.focus_set()
 
-        cellManager = CellManager(canvas)
+        cellManager = CellManager(canvas, 100, 100)
         userInput = UserInput(cellManager, canvas)
 
     def run(self):
