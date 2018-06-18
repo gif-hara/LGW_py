@@ -7,9 +7,6 @@ from threading import Lock
 class CellManager:
 
     def __init__(self, canvas, width, height):
-        from application import Application
-        window = Application().window
-        self.canvas = canvas
         cells = []
         for y in range(height):
             for x in range(width):
