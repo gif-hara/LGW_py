@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from cell import *
+from threading import Lock
 
 class CellManager:
 
@@ -19,6 +20,7 @@ class CellManager:
         self.processed_cellIds = {}
         self.width = width
         self.height = height
+        self.lock = Lock()
     
     def remove_all_cell(self):
         for c in self.cells:
@@ -31,15 +33,16 @@ class CellManager:
         return self.cells[x + y * self.width].isAlive
 
     def next_generation(self):
-        self.create_requests.clear()
-        self.remove_requests.clear()
-        self.processed_cellIds.clear()
-        for c in self.cells:
-            c.next_generation(self)
-        for c in self.create_requests:
-            c.set_alive(True)
-        for c in self.remove_requests:
-            c.set_alive(False)
+        with self.lock:
+            self.create_requests.clear()
+            self.remove_requests.clear()
+            self.processed_cellIds.clear()
+            for c in self.cells:
+                c.next_generation(self)
+            for c in self.create_requests:
+                c.set_alive(True)
+            for c in self.remove_requests:
+                c.set_alive(False)
 
     def get_adjacent_number(self, posX, posY):
         result = 0
