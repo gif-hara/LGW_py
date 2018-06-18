@@ -23,7 +23,7 @@ class ApplicationTkinter(Application):
         width = self.window.winfo_width()
         height = self.window.winfo_height()
         size = UserSettings.cell_size()
-        self.cellManager = CellManager(self.canvas, math.floor(width / size), math.floor(height / size))
+        self.cellManager = CellManager(self.canvas, math.floor(width / size), math.floor(height / size), "blue")
         self.userInput = UserInput(self.cellManager, self.canvas)
 
     def run(self):

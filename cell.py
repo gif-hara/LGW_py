@@ -4,7 +4,7 @@
 from user_settings import *
 
 class Cell:
-    def __init__(self, canvas, x, y, size, isAlive):
+    def __init__(self, canvas, x, y, size, isAlive, color):
         self.canvas = canvas
         self.x = x
         self.y = y
@@ -18,7 +18,7 @@ class Cell:
             posY,
             posX + size,
             posY + size,
-            fill="blue",
+            fill=color,
             state=self.get_state(self.isAlive)
             )
         

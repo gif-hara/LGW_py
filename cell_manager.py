@@ -6,11 +6,11 @@ from threading import Lock
 
 class CellManager:
 
-    def __init__(self, canvas, width, height):
+    def __init__(self, canvas, width, height, color):
         cells = []
         for y in range(height):
             for x in range(width):
-                cells.append(Cell(canvas, x, y, UserSettings.cell_size(), False))
+                cells.append(Cell(canvas, x, y, UserSettings.cell_size(), False, color))
         self.cells = tuple(cells)
         self.create_requests = []
         self.remove_requests = []
