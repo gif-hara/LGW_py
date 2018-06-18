@@ -3,6 +3,7 @@
 
 from cell import *
 from threading import Lock
+from application import *
 
 class CellManager:
 
@@ -40,6 +41,10 @@ class CellManager:
                 c.set_alive(True)
             for c in self.remove_requests:
                 c.set_alive(False)
+    
+    def next_generation_schedule(self):
+        self.next_generation()
+        Application().register_schedule(UserSettings.interval(), self.next_generation_schedule)
 
     def get_adjacent_number(self, posX, posY):
         result = 0

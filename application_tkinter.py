@@ -34,6 +34,8 @@ class ApplicationTkinter(Application):
         watch = Watch((self.backgroundCellManager, self.foregroundCellManager))
         watch.start()
 
+        self.backgroundCellManager.next_generation_schedule()
+
         self.userInput = UserInput(self.backgroundCellManager, self.canvas)
 
     def run(self):
