@@ -6,6 +6,7 @@ from cell import Cell
 from cell_manager import *
 from line_profiler import LineProfiler
 from user_input import *
+import math
 
 class Application:
 
@@ -28,7 +29,10 @@ class Application:
         self.canvas.pack(fill = tk.BOTH, expand = 1)
         self.canvas.focus_set()
 
-        self.cellManager = CellManager(self.canvas, 100, 100)
+        width = self.window.winfo_width()
+        height = self.window.winfo_height()
+        size = UserSettings.cell_size()
+        self.cellManager = CellManager(self.canvas, math.floor(width / size), math.floor(height / size))
         self.userInput = UserInput(self.cellManager, self.canvas)
 
     def run(self):
