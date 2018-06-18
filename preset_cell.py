@@ -4,24 +4,24 @@
 class PresetCell:
 
     @staticmethod
-    def apply_from_char(cellManager, char, offsetX, offsetY):
-        PresetCell._apply(PresetCell._dictionary[char], cellManager, offsetX, offsetY)
+    def apply_from_char(cellManager, char, offsetX, offsetY, ignoreRemove):
+        PresetCell._apply(PresetCell._dictionary[char], cellManager, offsetX, offsetY, ignoreRemove)
 
     @staticmethod
-    def apply_from_string(cellManager, string, offsetX, offsetY, space):
+    def apply_from_string(cellManager, string, offsetX, offsetY, space, ignoreRemove):
         for char in string:
-            PresetCell._apply(PresetCell._dictionary[char], cellManager, offsetX, offsetY)
+            PresetCell._apply(PresetCell._dictionary[char], cellManager, offsetX, offsetY, ignoreRemove)
             offsetX += 3 + space
 
     @staticmethod
-    def _apply(charTuple, cellManager, offsetX, offsetY):
+    def _apply(charTuple, cellManager, offsetX, offsetY, ignoreRemove):
         posX = offsetX
         posY = offsetY
         for y in charTuple:
             for x in y:
                 if x == 1:
                     cellManager.set_alive(posX, posY, True)
-                else:
+                elif ignoreRemove:
                     cellManager.set_alive(posX, posY, False)
                 posX += 1
             posY += 1

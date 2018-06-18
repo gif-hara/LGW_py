@@ -31,7 +31,7 @@ class ApplicationTkinter(Application):
         self.backgroundCellManager = CellManager(self.canvas, width, height, UserSettings.background_cell_color())
         self.foregroundCellManager = CellManager(self.canvas, width, height, UserSettings.foreground_cell_color())
 
-        watch = Watch((self.backgroundCellManager, self.foregroundCellManager))
+        watch = Watch(self.backgroundCellManager, self.foregroundCellManager)
         watch.start()
 
         self.backgroundCellManager.next_generation_schedule()
